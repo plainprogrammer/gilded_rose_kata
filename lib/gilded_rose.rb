@@ -5,12 +5,8 @@ def update_quality(items)
       multiple = quality_change_multiple(item)
       update_item_quality(item, multiple)
     end
-    update_item_sell_in(item)
+    item.sell_in -= 1
   end
-end
-
-def update_item_sell_in(item)
-  item.sell_in -= 1
 end
 
 def quality_change_multiple(item)
