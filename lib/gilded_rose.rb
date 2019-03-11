@@ -32,16 +32,19 @@ end
 def update_item_quality(item, multiple)
   case item.name
   when 'Aged Brie'
-    item.quality += [50 - item.quality, multiple].min
+    item.quality += multiple
   when 'Backstage passes to a TAFKAL80ETC concert'
     if item.sell_in > 0
-      item.quality += [50 - item.quality, multiple].min
+      item.quality += multiple
     else
       item.quality = 0
     end
+  when /^Conjured/
+    item.quality -= (2 * multiple)
   else
-    item.quality -= [item.quality, multiple].min
+    item.quality -= multiple
   end
+  item.quality = [[0, item.quality].max, 50].min
 end
 
 #----------------------------
